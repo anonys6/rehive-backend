@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs' ;
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import {OAuth2Client} from  'google-auth-library'
+const BASE_URL = process.env.BASE_URL || 'http://localhost:3000'
 
 dotenv.config();
 
@@ -29,20 +30,20 @@ export const User = async (req,res) => {
                     email : User.email ,
                     created : User.createdAt ,
                     update : User.updatedAt ,
-                    avatar : `http://localhost:3000/avatar/${User.avatar}` ,
+                    avatar : `${BASE_URL}/avatar/${User.avatar}` ,
                     favorite : User.saved,
                     followers: User.followers.map(e => {
                         return {
                             id: e._id,
                             username: e.username,
-                            avatar: `http://localhost:3000/avatar/${e.avatar}`,
+                            avatar: `${BASE_URL}/avatar/${e.avatar}`,
                         }
                     }),
                     following: User.following.map(e => {
                         return {
                             id: e._id,
                             username: e.username,
-                            avatar: `http://localhost:3000/avatar/${e.avatar}`,
+                            avatar: `${BASE_URL}/avatar/${e.avatar}`,
                         }
                     }),
                 }
@@ -142,7 +143,7 @@ export const Register = async (req,res) => {
                     fullName: profile.fullName,
                     email : profile.email ,
                     username : profile.username ,
-                    avatar : `http://localhost:3000/avatar/${profile.avatar}`
+                    avatar : `${BASE_URL}/avatar/${profile.avatar}`
                 }
             })
         }else {

@@ -27,15 +27,11 @@ let PublicationSchema = mongoose.Schema({
         ref: 'Tags',
         default: []
     }]
-    // comments : {
-    //     type : mongoose.Schema.Types.ObjectId,
-    //     default: []
-    // }
 },{
     timestamps: true
 })
 
-PublicationSchema.index({ description: 'content' });
+PublicationSchema.index({ description: 'text' });
 
 let Publication = mongoose.model('publication',PublicationSchema) ;
 

@@ -2,6 +2,8 @@ import Profile from '../models/Profile.js' ;
 import Publication from '../models/publication.js';
 import mongoose from 'mongoose';
 
+const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
+
 
 export const getUser = async (req, res) => {
     try {
@@ -23,13 +25,13 @@ export const getUser = async (req, res) => {
                         email: user.email,
                         created: user.createdAt,
                         updated: user.updatedAt,
-                        avatar: `http://localhost:3000/avatar/${user.avatar}`,
+                        avatar: `${BASE_URL}/avatar/${user.avatar}`,
                         followers: user.followers,
                         following: user.following,
                     },
                     publication: publications.map(publication => ({
                         id: publication._id,
-                        image: publication.image ? `http://localhost:3000/image/${publication.image}` : undefined,
+                        image: publication.image ? `${BASE_URL}/image/${publication.image}` : undefined,
                         description: publication.description,
                         date_create : publication.createdAt,
                         date_update : publication.updatedAt,
@@ -38,7 +40,7 @@ export const getUser = async (req, res) => {
                         author: {
                             id: user._id,
                             username: user.username,
-                            avatar: `http://localhost:3000/avatar/${user.avatar}`,
+                            avatar: `${BASE_URL}/avatar/${user.avatar}`,
                         },
                     }))
                 }
@@ -78,7 +80,7 @@ export const updateUser = async (req, res) => {
                 fullName: updatedUser.fullName,
                 email: updatedUser.email,
                 updatedAt: updatedUser.updatedAt,
-                avatar: `http://localhost:3000/avatar/${updatedUser.avatar}`,
+                avatar: `${BASE_URL}/avatar/${updatedUser.avatar}`,
             }
         });
     } catch (error) {
@@ -134,14 +136,14 @@ export const getFavorite = async (req, res) => {
             favorite: user.saved.reverse().map((post) => ({
                 id: post._id,
                 description: post.description,
-                image: post.image ? `http://localhost:3000/image/${post.image}` : undefined,
+                image: post.image ? `${BASE_URL}/image/${post.image}` : undefined,
                 date_create: post.createdAt,
                 date_update: post.updatedAt,
                 author: {
                     id: post.author._id,
                     username: post.author.username,
                     fullName: post.author.fullName,
-                    avatar: post.author.avatar ? `http://localhost:3000/avatar/${post.author.avatar}` : undefined,
+                    avatar: post.author.avatar ? `${BASE_URL}/avatar/${post.author.avatar}` : undefined,
                 }
             }))
         });
@@ -211,7 +213,7 @@ export const getPeople = async (req, res) => {
                     id : person.id,
                     username : person.username,
                     fullName: person.fullName,
-                    avatar : `http://localhost:3000/avatar/${person.avatar}`,
+                    avatar : `${BASE_URL}/avatar/${person.avatar}`,
                 }
             })
         });

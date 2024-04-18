@@ -78,14 +78,14 @@ export const getTag = async (req, res) => {
                 return {
                     id: post._id,
                     description: post.description,
-                    image: post.image? `http://localhost:3000/image/${post.image}` : undefined,
+                    image: post.image? `${req.protocol}://${req.get('host')}/image/${post.image}` : undefined,
                     date_create: post.createdAt,
                     tags: post.tags.map(e => ({ id: e._id, name: e.name })),
                     author: {
                         id: post.author._id,
                         fullName: post.author.fullName,
                         username: post.author.username,
-                        avatar: `http://localhost:3000/avatar/${post.author.avatar}`,
+                        avatar: `${req.protocol}://${req.get('host')}/avatar/${post.author.avatar}`,
                     }
                 }
             })

@@ -23,10 +23,6 @@ let ProfileSchema = mongoose.Schema({
         type : String ,
         default: 'default-avatar-image.jpg'
     },
-    // viewProfile :{
-    //     type : Number,
-    //     default : 0,
-    // },
     saved : [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'publication'
@@ -43,9 +39,6 @@ let ProfileSchema = mongoose.Schema({
     timestamps : true
 }) ;
 
-
 let Profile = mongoose.model('Profile', ProfileSchema);
 
 export default Profile ;
-
-

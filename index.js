@@ -11,7 +11,8 @@ import tagsRoutes from "./router/tags.js";
 dotenv.config();
 
 const app = express();
-const { PORT, MONGODB_URI} = process.env;
+const { MONGODB_URI } = process.env;
+const PORT = process.env.PORT || 3000; // Use Heroku's port or 5000 if running locally
 
 app.use(express.json());
 app.use(cors());
@@ -31,5 +32,3 @@ mongoose.connect(MONGODB_URI, {}).then(() => {
         console.log(`Server running on port ${PORT}`);
     });
 }).catch((err) => console.error('Error connecting to MongoDB', err));
-
-

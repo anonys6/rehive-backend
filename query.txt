@@ -1,0 +1,39 @@
+you forgot about the BASE_URL thing, as i want to deploy it also, read our  whole message history again and fix this according to that
+
+this was my initial message:
+this is my backend file tree
+
+clay@clay:~/try/rehive-backend$ tree -I 'node_modules' . ├── controllers │ ├── auth.js │ ├── publication.js │ ├── search.js │ ├── tags.js │ └── users.js ├── index.js ├── middleware │ ├── auth.js │ ├── imageUpload.util.js │ └── upload.js ├── models │ ├── Profile.js │ ├── publication.js │ └── tags.js ├── package.json ├── package-lock.json ├── router │ ├── auth.js │ ├── publications.js │ ├── search.js │ ├── tags.js │ └── users.js └── uploads ├── avatar │ ├── avatar-1710790082667-150x150.png │ ├── avatar-1710790129273-150x150.png │ ├── avatar-1710790160935-150x150.png │ ├── avatar-1710790745690-150x150.png │ ├── avatar-1710790910849-150x150.png │ ├── avatar-1710791507615-150x150.png │ ├── avatar-1710791778259-150x150.png │ ├── avatar-1710792035676-150x150.png │ └── default-avatar-image.jpg └── image ├── image-1710776789753-800x500.png ├── image-1710790573262-800x500.png ├── image-1710790666897-800x500.png ├── image-1710790793804-800x500.png ├── image-1710790963971-800x500.png ├── image-1710791038454-800x500.png ├── image-1710791590689-800x500.png ├── image-1710791673812-800x500.png ├── image-1710791722691-800x500.png ├── image-1710791810842-800x500.png ├── image-1710791846691-800x500.png ├── image-1710791949713-800x500.png ├── image-1710792153670-800x500.png ├── image-1710792202736-800x500.png ├── image-1710792267866-800x500.png ├── image-1710792709942-800x500.png ├── image-1710792823768-800x500.png └── image-1713386223625-800x500.png
+
+7 directories, 46 files
+
+and this is frontend . ├── bun.lockb ├── index.html ├── package.json ├── package-lock.json ├── postcss.config.js ├── src │ ├── App.jsx │ ├── assets │ │ ├── logo │ │ │ ├── dark.png │ │ │ ├── index.jsx │ │ │ └── ligth.png │ │ └── placeholder.jpg │ ├── components │ │ ├── home │ │ │ ├── CreatePostPublication.jsx │ │ │ ├── EditPostPublication.jsx │ │ │ ├── PostCard.jsx │ │ │ └── ProfileCard.jsx │ │ ├── index.jsx │ │ ├── navbar │ │ │ ├── btnConnect.jsx │ │ │ ├── MenuMobile.jsx │ │ │ ├── notification.jsx │ │ │ ├── profileNav.jsx │ │ │ └── search │ │ │ ├── search.jsx │ │ │ ├── searchList.jsx │ │ │ ├── search.scss │ │ │ └── serachResult.jsx │ │ ├── profiles │ │ │ ├── profileInfo.jsx │ │ │ └── profileInfo.scss │ │ ├── settings │ │ │ ├── FormEdit.jsx │ │ │ └── FromSecurity.jsx │ │ └── widgets │ │ ├── CardPeople.jsx │ │ ├── editPost.jsx │ │ ├── editProfile.jsx │ │ ├── favoritePost.jsx │ │ ├── FeedHome.jsx │ │ ├── friends.jsx │ │ ├── pageTag.jsx │ │ ├── pageTags.jsx │ │ ├── people.jsx │ │ ├── profile.jsx │ │ ├── showPost.jsx │ │ ├── sidBarTags.jsx │ │ ├── sideBarLink.jsx │ │ └── tags.jsx │ ├── container │ │ ├── index.jsx │ │ ├── main │ │ │ ├── main.jsx │ │ │ └── main.scss │ │ └── NavBar │ │ ├── NavBar.jsx │ │ └── NavBar.scss │ ├── layouts │ │ └── layout.jsx │ ├── lib │ │ ├── api │ │ │ └── axios.jsx │ │ ├── middleware │ │ │ └── index.jsx │ │ └── validation │ │ └── index.jsx │ ├── main.jsx │ ├── pages │ │ ├── auth │ │ │ ├── auth.scss │ │ │ ├── login.jsx │ │ │ └── register.jsx │ │ ├── home │ │ │ ├── home.jsx │ │ │ └── home.scss │ │ ├── index.jsx │ │ └── settings │ │ ├── settings.jsx │ │ └── settings.scss │ ├── router │ │ └── index.jsx │ ├── scss │ │ ├── app.scss │ │ └── style.scss │ ├── store.jsx │ └── toolkit │ ├── darkModeSlice.jsx │ ├── favoriteSlice.jsx │ ├── postSlice.jsx │ ├── profilesSlice.jsx │ └── userSlice.jsx ├── tailwind.config.js └── vite.config.js
+
+25 directories, 70 files
+i am deploying my frontend from vercel and backend from heroku, now tell me all the stpes how to do it, thing is locally i am running it like this, like where i am using backend things in frontend i am giving like like localhost:3000/.../../ something like this, but now i am having problem whilte deploying so by looking at my env tell me how can i connect them after deploying also so they run, localally they run well but not in cloud. i am unable to establish a connection between them.
+
+you said
+To deploy your applications to Heroku and Vercel, you need to follow these steps:
+
+Prepare your backend for deployment:
+
+Update your backend code to use the process.env.PORT variable. Heroku dynamically assigns your app a port, so you can't set the port to a fixed number. Your app won't start if it's listening on the hardcoded port 3000.
+Update your code to serve static files from the uploads directory. Express.js has a built-in middleware function, express.static, for serving static files.
+Update your code to use environment variables for your MongoDB URI, JWT secret, and Google client ID and secret. You're already doing this, which is great.
+Update your code to generate URLs for avatars using the host name from the incoming request, not a hardcoded localhost:3000. This way, when you deploy your app, it will generate URLs with the correct host name.
+Deploy your backend to Heroku:
+
+Create a new app on Heroku.
+Connect your app to the GitHub repository that contains your backend code.
+Configure environment variables in your Heroku app settings. Set MONGODB_URI, JWT_SECRET, GOOGLE_CLIENT_ID, and GOOGLE_CLIENT_SECRET to the values you were using in your local .env file.
+Deploy your app.
+Prepare your frontend for deployment:
+
+Update your frontend code to use an environment variable for the API URL. You're already doing this with VITE_APP_URL_API, which is great. You just need to make sure that you're using this variable everywhere in your code where you make API requests.
+Update the VITE_APP_URL_API variable in your local .env file to point to your Heroku app's URL.
+Deploy your frontend to Vercel:
+
+Create a new project on Vercel.
+Connect your project to the GitHub repository that contains your frontend code.
+Configure environment variables in your Vercel project settings. Set VITE_APP_URL_API to your Heroku app's URL.
+Deploy your project.

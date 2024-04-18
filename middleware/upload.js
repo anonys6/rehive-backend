@@ -1,5 +1,14 @@
 import multer from 'multer';
 import SharpMulter from 'sharp-multer';
+import fs from 'fs';
+
+if (!fs.existsSync('uploads/image')) {
+    fs.mkdirSync('uploads/image', { recursive: true });
+}
+
+if (!fs.existsSync('uploads/avatar')) {
+    fs.mkdirSync('uploads/avatar', { recursive: true });
+}
 
 const image = SharpMulter({
     destination: function (req, file, cb) {

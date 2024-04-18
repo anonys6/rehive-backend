@@ -9,6 +9,7 @@ const imageUpload = async (req) => {
         .resize({with:800, height:600})
         .jpeg({quality: 80})
         .toFile(`uploads/images/${req.file.fieldname}-${uniqueId}.${fileExtension.split('/')['1']}`);
+        return `uploads/images/${req.file.fieldname}-${uniqueId}.${fileExtension.split('/')['1']}`;
     } catch (error) {
         console.log(error);
     }

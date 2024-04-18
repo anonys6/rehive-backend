@@ -5,6 +5,7 @@ import Profile from '../models/Profile.js';
 export const search = async (req, res) => {
     try {
         const { query } = req.query;
+        const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
 
         const publications = await Publication.find({
             description: { $regex: new RegExp(query, 'i') }
@@ -25,7 +26,7 @@ export const search = async (req, res) => {
             publications : publications.map(e => {
                 return {
                     id: e._id,
-                    image: e.image? `http://localhost:3000/image/${e.image}` : undefined,
+                    image: e.image? `${BASE_URL}/image/${e.image}` : undefined,
                     description: e.description.slice(0, 100),
                     author: e.author.username,
                 }
@@ -35,7 +36,7 @@ export const search = async (req, res) => {
                     id: e._id,
                     fullName: e.fullName,
                     username: e.username,
-                    avatar: `http://localhost:3000/avatar/${e.avatar}`,
+                    avatar: `${BASE_URL}/avatar/${e.avatar}`,
                 }
             }),
             tags : tags.map(e => {
