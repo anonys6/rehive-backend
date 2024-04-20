@@ -32,7 +32,7 @@ The frontend for this application is located in a separate repository. You can f
 
 ## Live Application
 
-The live application is hosted on Vercel and can be accessed [here](https://rehive-frontend.vercel.app/).
+The frontend of the application is hosted on Vercel and can be accessed [here](https://rehive-frontend.vercel.app/). The backend is hosted on Heroku.
 
 ## Contributing
 
