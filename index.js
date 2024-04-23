@@ -12,7 +12,7 @@ dotenv.config();
 
 const app = express();
 const { MONGODB_URI } = process.env;
-const PORT = process.env.PORT || 3000; // Use Heroku's port or 5000 if running locally
+const PORT = process.env.PORT || 3000; // Use Heroku's port or 3000 if running locally
 
 app.use(express.json());
 app.use(cors());
