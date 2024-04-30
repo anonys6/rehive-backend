@@ -87,6 +87,6 @@ Thumbs.db
 /frontend/node_modules
 
 # Backend
-/backend/uploads
+# /backend/uploads
 /backend/node_modules
 /backend/.env
